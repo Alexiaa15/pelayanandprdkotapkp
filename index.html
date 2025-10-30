@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Halaman Utama</title>
+  <!-- Favicon untuk browser modern -->
+    <link rel="icon" type="image/png" sizes="32x32" href="icon/jdih-setwankota.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icon/jdih-setwankota.png">
+
+    <!-- Favicon untuk Apple devices -->
+    <link rel="apple-touch-icon" sizes="180x180" href="icon/jdih-setwankota.png">
+
+    <!-- Favicon untuk Android devices -->
+    <link rel="manifest" href="icon/jdih-setwankota.png">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body { 
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
+      justify-content: center; 
+      min-height: 100vh; 
+      background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Animated background circles */
+    body::before {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      top: -250px;
+      right: -250px;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    body::after {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 50%;
+      bottom: -200px;
+      left: -200px;
+      animation: float 8s ease-in-out infinite reverse;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(20px); }
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 50px 60px;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      z-index: 1;
+      animation: slideIn 0.6s ease-out;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h1 { 
+      margin-bottom: 15px;
+      font-size: 2em;
+      background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-align: center;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      line-height: 1.3;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #666;
+      font-size: 1em;
+      margin-bottom: 35px;
+      font-weight: 500;
+    }
+
+    .menu-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .menu-button { 
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 320px; 
+      padding: 20px 30px; 
+      font-size: 18px; 
+      font-weight: 600;
+      text-align: center; 
+      text-decoration: none; 
+      color: white; 
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 12px; 
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .menu-button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.5s;
+    }
+
+    .menu-button:hover::before {
+      left: 100%;
+    }
+
+    .menu-button:hover { 
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+    }
+
+    .menu-button:active {
+      transform: translateY(-1px);
+    }
+
+    .menu-button:nth-child(1) {
+      animation: fadeInUp 0.6s ease-out 0.2s both;
+    }
+
+    .menu-button:nth-child(2) {
+      animation: fadeInUp 0.6s ease-out 0.4s both;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Icon styles */
+    .menu-button::after {
+      content: '→';
+      margin-left: 10px;
+      font-size: 1.2em;
+      transition: transform 0.3s;
+    }
+
+    .menu-button:hover::after {
+      transform: translateX(5px);
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 40px 30px;
+      }
+
+      h1 {
+        font-size: 1.6em;
+        letter-spacing: 0px;
+      }
+
+      .subtitle {
+        font-size: 0.9em;
+      }
+
+      .menu-button {
+        width: 280px;
+        padding: 18px 25px;
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>DPRD Kota Pangkalpinang</h1>
+    <p class="subtitle">Sistem Informasi Digital</p>
+    <div class="menu-container">
+      <a href="absensitamu.html" class="menu-button">Absensi Tamu</a>
+      <a href="surveykepuasan.html" class="menu-button">Survey Kepuasan</a>
+    </div>
+  </div>
+</body>
+</html>

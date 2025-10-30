@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Absensi Tamu DPRD Kota Pangkalpinang</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="icon/jdih-setwankota.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icon/jdih-setwankota.png">
+
+    <!-- Favicon untuk Apple devices -->
+    <link rel="apple-touch-icon" sizes="180x180" href="icon/jdih-setwankota.png">
+
+    <!-- Favicon untuk Android devices -->
+    <link rel="manifest" href="icon/jdih-setwankota.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #2c5282 0%, #3182ce 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon fill="rgba(255,255,255,0.05)" points="0,0 100,0 80,100 0,100"/></svg>');
+            background-size: 200px;
+        }
+        
+        .logo-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .logo {
+            width: 100px;
+            height: 100px;
+            background: rgba(255,255,255,0.95);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            border: 4px solid rgba(255,255,255,0.5);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+        
+        .logo-text {
+            font-size: 1.4rem;
+            font-weight: bold;
+            text-align: center;
+            line-height: 1.2;
+            color: #2c5282;
+        }
+        
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .header h2 {
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 2;
+            opacity: 0.95;
+            font-weight: 400;
+        }
+        
+        /* Form Content */
+        .form-content {
+            padding: 40px 30px;
+        }
+        
+        .welcome-text {
+            text-align: center;
+            color: #2c5282;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .welcome-text strong {
+            display: block;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #1a365d;
+        }
+        
+        /* Input Group */
+        .input-group {
+            margin-bottom: 25px;
+        }
+        
+        .input-group label {
+            display: block;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+        
+        .input-group input[type="text"] {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #fafafa;
+        }
+        
+        .input-group input[type="text"]:focus {
+            outline: none;
+            border-color: #3182ce;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(49,130,206,0.1);
+            transform: translateY(-2px);
+        }
+        
+        .input-group input[type="text"]:hover {
+            border-color: #cbd5e0;
+        }
+        
+        .input-icon {
+            position: relative;
+        }
+        
+        .input-icon::before {
+            content: attr(data-icon);
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            pointer-events: none;
+            z-index: 10;
+            line-height: 1;
+        }
+        
+        .input-icon input {
+            padding-left: 60px !important;
+            position: relative;
+            z-index: 5;
+        }
+        
+        /* Button */
+        .btn-submit {
+            background: linear-gradient(135deg, #2c5282 0%, #3182ce 100%);
+            color: white;
+            border: none;
+            padding: 16px 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(49,130,206,0.35);
+            transition: all 0.3s ease;
+            display: block;
+            width: 100%;
+            margin: 30px 0 0;
+            letter-spacing: 0.5px;
+        }
+        
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(49,130,206,0.45);
+        }
+        
+        .btn-submit:active {
+            transform: translateY(-1px);
+        }
+        
+        .btn-submit:disabled {
+            background: linear-gradient(135deg, #a0aec0 0%, #cbd5e0 100%);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        /* Status Message */
+        #status {
+            text-align: center;
+            margin-top: 20px;
+            padding: 18px 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            animation: slideIn 0.4s ease;
+        }
+        
+        #status.success {
+            background: linear-gradient(135deg, #c6f6d5 0%, #9ae6b4 100%);
+            color: #22543d;
+            border: 2px solid #48bb78;
+            box-shadow: 0 4px 15px rgba(72,187,120,0.2);
+        }
+        
+        #status.error {
+            background: linear-gradient(135deg, #fed7d7 0%, #fc8181 100%);
+            color: #742a2a;
+            border: 2px solid #f56565;
+            box-shadow: 0 4px 15px rgba(245,101,101,0.2);
+        }
+        
+        /* Footer */
+        .footer {
+            background: linear-gradient(to bottom, #f7fafc, #edf2f7);
+            padding: 25px 20px;
+            text-align: center;
+            color: #4a5568;
+            font-size: 0.9rem;
+            border-top: 2px solid #e2e8f0;
+        }
+        
+        .footer p:first-child {
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 5px;
+        }
+        
+        /* Info Box */
+        .info-box {
+            background: linear-gradient(135deg, #e6f2ff 0%, #cfe8ff 100%);
+            padding: 16px 20px;
+            border-radius: 12px;
+            border-left: 5px solid #3182ce;
+            margin-bottom: 25px;
+            color: #2c5282;
+            font-size: 0.95rem;
+            box-shadow: 0 2px 8px rgba(49,130,206,0.1);
+        }
+        
+        /* Current Time Display */
+        .time-display {
+            text-align: center;
+            font-size: 0.95rem;
+            color: #4a5568;
+            margin-top: 15px;
+            padding: 12px;
+            background: linear-gradient(to bottom, #f7fafc, #edf2f7);
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            font-weight: 500;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                border-radius: 15px;
+            }
+            
+            .header {
+                padding: 30px 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .header h2 {
+                font-size: 0.95rem;
+            }
+            
+            .form-content {
+                padding: 30px 20px;
+            }
+            
+            .logo {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .logo-text {
+                font-size: 1.2rem;
+            }
+            
+            .welcome-text strong {
+                font-size: 1.2rem;
+            }
+            
+            .btn-submit {
+                font-size: 1rem;
+                padding: 14px 40px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.3rem;
+            }
+            
+            .input-group input[type="text"] {
+                font-size: 0.95rem;
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(20px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .form-content {
+            animation: fadeIn 0.6s ease;
+        }
+        
+        /* Loading spinner */
+        .btn-submit.loading::after {
+            content: '';
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            margin-left: 10px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo-section">
+                <div class="logo">
+                    <img src="icon/jdih-setwankota.png" alt="Logo DPRD" style="width: 70px; height: 70px; object-fit: contain;">
+                </div>
+                <div style="text-align: center;">
+                    <h1>FORM ABSENSI TAMU</h1>
+                    <h2>Dewan Perwakilan Rakyat Daerah<br>Kota Pangkalpinang</h2>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Form Content -->
+        <div class="form-content">
+            <div class="welcome-text">
+                <strong>Selamat Datang!</strong>
+                Silakan isi form absensi berikut untuk keperluan administrasi kunjungan Anda
+            </div>
+            
+            <div class="info-box">
+                ℹ️ Pastikan semua data yang Anda masukkan sudah benar sebelum mengirim
+            </div>
+            
+            <form id="absensiForm">
+                <div class="input-group">
+                    <label for="nama">Nama Lengkap <span style="color: #e53e3e;">*</span></label>
+                    <div class="input-icon" data-icon="👤">
+                        <input type="text" id="nama" name="nama" placeholder="Masukkan nama lengkap Anda" required />
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label for="asal">Asal / Instansi <span style="color: #e53e3e;">*</span></label>
+                    <div class="input-icon" data-icon="🏢">
+                        <input type="text" id="asal" name="asal" placeholder="Contoh: Dinas Pendidikan / Perorangan" required />
+                    </div>
+                </div>
+                
+                <div class="input-group">
+                    <label for="tujuan">Tujuan Kunjungan <span style="color: #e53e3e;">*</span></label>
+                    <div class="input-icon" data-icon="📋">
+                        <input type="text" id="tujuan" name="tujuan" placeholder="Contoh: Bertemu dengan Anggota DPRD" required />
+                    </div>
+                </div>
+                
+                <div class="time-display" id="currentTime"></div>
+                
+                <button type="submit" class="btn-submit" id="submitBtn">
+                    Kirim Absensi
+                </button>
+            </form>
+            
+            <!-- Status Message -->
+            <div id="status"></div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <p><strong>Dewan Perwakilan Rakyat Daerah Kota Pangkalpinang</strong></p>
+            <p>Melayani dengan Integritas dan Dedikasi</p>
+        </div>
+    </div>
+    
+    <script>
+        const scriptURL = "https://script.google.com/macros/s/AKfycbzHPszZ2CE75QaJrAViEJ5W79eedRdIdj6RlZHum8RBT6l2s3NH0iNBMl57hLnLdGe0/exec";
+        
+        // Display current time
+        function updateTime() {
+            const now = new Date();
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                timeZone: 'Asia/Jakarta'
+            };
+            const timeString = now.toLocaleString('id-ID', options);
+            document.getElementById('currentTime').textContent = `📅 Waktu: ${timeString} WIB`;
+        }
+        
+        // Update time every second
+        updateTime();
+        setInterval(updateTime, 1000);
+        
+        // Form submission
+        document.getElementById("absensiForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const data = Object.fromEntries(formData.entries());
+            const statusEl = document.getElementById("status");
+            const submitBtn = document.getElementById("submitBtn");
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            submitBtn.classList.add('loading');
+            submitBtn.textContent = 'Mengirim';
+            statusEl.textContent = '';
+            statusEl.className = '';
+            
+            try {
+                await fetch(scriptURL, {
+                    method: "POST",
+                    body: JSON.stringify(data),
+                    headers: { "Content-Type": "application/json" },
+                    mode: "no-cors"
+                });
+                
+                // Success
+                statusEl.textContent = '✅ Terima kasih! Absensi Anda telah berhasil dicatat.';
+                statusEl.className = 'success';
+                e.target.reset();
+                
+                // Scroll to status
+                statusEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // Redirect to index page after 2 seconds
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 2000);
+                
+            } catch (err) {
+                // Error
+                statusEl.textContent = '❌ Maaf, terjadi kesalahan. Silakan coba lagi.';
+                statusEl.className = 'error';
+                
+                // Reset button on error
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('loading');
+                submitBtn.textContent = 'Kirim Absensi';
+            }
+        });
+    </script>
+</body>
+</html>
